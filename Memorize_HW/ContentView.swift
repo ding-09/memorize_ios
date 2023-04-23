@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-	var emojis = ["🐶", "🐹", "🦁", "🐸", "🐻‍❄️", "🦄", "🐷", "🐻", "🐥", "🐙", "🦦"]
+	@State var emojiCategories = [
+		"animals": ["🐶", "🐹", "🦁", "🐸", "🐻‍❄️", "🦄", "🐷", "🐻", "🐥", "🐙", "🦦"],
+		"sports": ["sport"],
+	]
 	
-	@State var emojiCount = 11
+	@State var emojiCount = 1
 	
 	var body: some View {
 		VStack {
@@ -19,7 +22,7 @@ struct ContentView: View {
 			// cards
 			ScrollView {
 				LazyVGrid(columns: [GridItem(.adaptive(minimum: 75))]) {
-					ForEach(emojis[0..<emojiCount], id: \.self, content: { emoji in
+					ForEach(emojiCategories["sports"]![0..<emojiCount], id: \.self, content: { emoji in
 						CardView(isFaceUp: true, content: emoji).aspectRatio(2/3, contentMode: .fit)
 					})
 				}
@@ -58,7 +61,7 @@ struct ContentView: View {
 					}.font(.title2)
 					Text("Weather").font(.subheadline)
 				}
-			}.padding(/*@START_MENU_TOKEN@*/[.top, .leading, .trailing]/*@END_MENU_TOKEN@*/).foregroundColor(.blue)
+			}.padding(/*@START_MENU_TOKEN@*/[.top, .leading, .trailing], 20.0/*@END_MENU_TOKEN@*/).foregroundColor(.blue)
 		}
 		.padding(/*@START_MENU_TOKEN@*/[.top, .leading, .trailing]/*@END_MENU_TOKEN@*/)
 	}
